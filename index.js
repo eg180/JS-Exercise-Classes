@@ -66,23 +66,66 @@ const person1 = new Person("Mary", 50);
 
 console.log(person1.toString());
 
-/*
-  TASK 2
-    - Write a Car class whose constructor initializes `model` and `milesPerGallon` from arguments.
-    - All instances built with Car:
-        + should initialize with a `tank` at 0
-        + should initialize with an `odometer` at 0
-    - Give cars the ability to get fueled with a `.fill(gallons)` method. Add the gallons to `tank`.
-    - Give cars ability to `.drive(distance)`. The distance driven:
-        + Should cause the `odometer` to go up.
-        + Should cause the the `tank` to go down taking `milesPerGallon` into account.
-    - A car which runs out of `fuel` while driving can't drive any more distance:
-        + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
-*/
+
+    // TASK 2
+  //   - Write a Car class whose constructor initializes `model` and `milesPerGallon` from arguments.
+  //   - All instances built with Car:
+  //       + should initialize with a `tank` at 0
+  //       + should initialize with an `odometer` at 0
+  //   - Give cars the ability to get fueled with a `.fill(gallons)` method. Add the gallons to `tank`.
+  //   - Give cars ability to `.drive(distance)`. The distance driven:
+  //       + Should cause the `odometer` to go up.
+  //       + Should cause the the `tank` to go down taking `milesPerGallon` into account.
+  //   - A car which runs out of `fuel` while driving can't drive any more distance:
+  //       + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
+
 
 class Car {
+  constructor(model, milesPerGallon) {
+    this.model = model;
+    this.milesPerGallon = milesPerGallon;
+    this.tank = 0;
+    this.odometer = 0;
+    this.milesUntilEmptyTank = 0;
+  }
+  
+  fill(gallons) {
+    this.tank += gallons;
+    this.milesUntilEmptyTank = this.milesPerGallon * this.tank;
+  }
+  
+  drive(distance) {
+    this.odometer += distance;
+    this.tank = (this.milesUntilEmptyTank - distance) / this.milesPerGallon;
+  }
+  
+  
+} // closes car constructor class
 
-}
+
+const car1 = new Car("Mini", 35);
+
+
+car1.fill(20); // added 20 gallons of gas
+
+console.log("gallons in tank");
+console.log(car1.tank);
+
+console.log("miles per gallon");
+console.log(car1.milesPerGallon);
+
+console.log("miles till tank empty");
+console.log(car1.milesUntilEmptyTank);
+
+console.log("driving to Jacksonville from Atl");
+car1.drive(310);
+
+console.log("car tank below in gallons?");
+console.log(car1.tank);
+
+
+console.log("car's odometer below: ");
+console.log(car1.odometer);
 
 /*
   TASK 3

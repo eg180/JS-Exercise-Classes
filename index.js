@@ -145,9 +145,9 @@ console.log(car1.odometer);
 */
 class Lambdasian {
   constructor(attributes) {
-    this.name = name;
-    this.age = age;
-    this.location = location;
+    this.name = attributes.name;
+    this.age = attributes.age;
+    this.location = attributes.location;
   }
   speak(){
     `Hello, my name is ${this.name}, I am from ${this.location}`;
@@ -222,10 +222,10 @@ class Student extends Lambdasian {
     return `Loving ${this.favSubjects}`;
   }
   PRAssignment(subject) {
-    return `${student.name} has submitted a PR for subject.`;
+    return `${this.name} has submitted a PR for subject.`;
   }
   sprintChallenge() {
-    return `${student.name} has begun sprint challenge on subject.`;
+    return `${this.name} has begun sprint challenge on subject.`;
   }
   
 }
@@ -243,7 +243,18 @@ class Student extends Lambdasian {
         + `standUp` a method that takes in a slack channel and returns `{name} announces to {channel}, @channel standy times!`
         + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
 */
-class ProjectManager {
+class ProjectManager extends Instructor{
+  constructor(attributes) {
+    super(attributes);
+    this.gradClassName = attributes.gradClassName;
+    this.favInstructor = attributes.faveInstructor;
+  }
+  standUp(slackChannel) {
+    return `${this.name} announces to ${slackChannel}, @channel standby times!`;
+  }
+  debugsCode(student) {
+    return `${student.name} debugs ${student.name}'s code on subject.`;
+  }
 
 }
 
